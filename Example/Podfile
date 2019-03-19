@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RxPageViewController_Example' do
+  pod 'RxPageViewController', :path => '../'
+
+  target 'RxPageViewController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
