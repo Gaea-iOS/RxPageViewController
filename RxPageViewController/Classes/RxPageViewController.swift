@@ -76,6 +76,12 @@ public class RxPageViewController: UIViewController {
         reloadData(animated: false)
     }
 
+    public func setControllers(_ controllers: [UIViewController]) {
+        reset()
+        _controllers.accept(controllers)
+        reloadData(animated: false)
+    }
+
     public func addController(_ controller: UIViewController) {
         let controllers = _controllers.value + [controller]
         _controllers.accept(controllers)
