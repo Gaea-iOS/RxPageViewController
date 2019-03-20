@@ -34,6 +34,10 @@ public class RxPageViewController: UIViewController {
             return
         }
 
+        guard index != _currentIndex.value else {
+            return
+        }
+
         let direction: UIPageViewController.NavigationDirection = {
             if index < _currentIndex.value  {
                 return .reverse
@@ -61,7 +65,7 @@ public class RxPageViewController: UIViewController {
     private let _totalPages = BehaviorRelay<Int>(value: 0)
 
     public var totalPages: Observable<Int> {
-        return _totalPages.asObservable()
+        return _totalPages.distinctUntilChanged()
     }
 
     public func reset() {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxPageViewController'
-  s.version          = '0.2.0'
+  s.version          = '0.2.2'
   s.summary          = 'A short description of RxPageViewController.'
 
 # This description is used to generate tags and improve search results.

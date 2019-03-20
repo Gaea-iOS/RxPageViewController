@@ -3,7 +3,7 @@ PODS:
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
-  - RxPageViewController (0.1.0):
+  - RxPageViewController (0.2.0):
     - RxCocoa (~> 4.4)
     - RxReachability (~> 0.1.7)
     - RxSwift (~> 4.4)
@@ -43,7 +43,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxPageViewController: 09beeabdd77615a2c4dd2d7cc256af3f4b55a521
+  RxPageViewController: bb4b3c82a3adfd7c7f0619832fb8d64333e217ad
   RxReachability: 899637fce53e076465126e58d71ad835fce17924
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
