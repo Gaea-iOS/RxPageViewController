@@ -1,0 +1,37 @@
+{
+  "name": "RxPageViewController",
+  "version": "0.1.0",
+  "summary": "A short description of RxPageViewController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/wangxiaotao/RxPageViewController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wangxiaotao": "445242970@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/wangxiaotao/RxPageViewController.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "swift_version": "4.2",
+  "source_files": "RxPageViewController/Classes/**/*",
+  "dependencies": {
+    "RxSwift": [
+      "~> 4.4"
+    ],
+    "RxCocoa": [
+      "~> 4.4"
+    ],
+    "RxSwiftExt": [
+      "~> 3.4"
+    ],
+    "RxReachability": [
+      "~> 0.1.7"
+    ]
+  }
+}

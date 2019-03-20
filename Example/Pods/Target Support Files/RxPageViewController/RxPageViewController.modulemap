@@ -1,0 +1,6 @@
+framework module RxPageViewController {
+  umbrella header "RxPageViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +20,130 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSY-jc-sd4">
+                                <rect key="frame" x="20" y="40" width="335" height="150"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ta-zc-Uv6">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
+                                        <connections>
+                                            <segue destination="a8e-9U-q87" kind="embed" id="hoM-Us-JS8"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8ta-zc-Uv6" firstAttribute="leading" secondItem="OSY-jc-sd4" secondAttribute="leading" id="4DE-xv-wyH"/>
+                                    <constraint firstAttribute="height" constant="150" id="AlA-Iw-GBW"/>
+                                    <constraint firstAttribute="trailing" secondItem="8ta-zc-Uv6" secondAttribute="trailing" id="CUb-tw-Ll0"/>
+                                    <constraint firstAttribute="bottom" secondItem="8ta-zc-Uv6" secondAttribute="bottom" id="TwL-ys-7Jx"/>
+                                    <constraint firstItem="8ta-zc-Uv6" firstAttribute="top" secondItem="OSY-jc-sd4" secondAttribute="top" id="vgN-fj-xdi"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-aK-5p9">
+                                <rect key="frame" x="20" y="210" width="335" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4x-1R-RrA">
+                                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="50"/>
+                                        <state key="normal" title="scroll next"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nf-ar-81e">
+                                        <rect key="frame" x="111.5" y="0.0" width="112" height="50"/>
+                                        <state key="normal" title="scroll previous"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFB-EY-46s">
+                                        <rect key="frame" x="223.5" y="0.0" width="111.5" height="50"/>
+                                        <state key="normal" title="scroll to 2"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="pMw-vX-TMw"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="y18-fT-LBM">
+                                <rect key="frame" x="20" y="280" width="335" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVm-fl-p69">
+                                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="50"/>
+                                        <state key="normal" title="add controller"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6D-TZ-164">
+                                        <rect key="frame" x="111.5" y="0.0" width="112" height="50"/>
+                                        <state key="normal" title="insert controller"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWr-OK-Mf8">
+                                        <rect key="frame" x="223.5" y="0.0" width="111.5" height="50"/>
+                                        <state key="normal" title="rm controller"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rYT-dw-ehJ"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuU-V9-Es0">
+                                <rect key="frame" x="20" y="350" width="335" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="U8F-JC-IFz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkQ-pb-6cL">
+                                <rect key="frame" x="162.5" y="380" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7Vf-7k-0oz"/>
+                                    <constraint firstAttribute="width" constant="50" id="iDi-SN-6QL"/>
+                                </constraints>
+                                <state key="normal" title="reset"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lkQ-pb-6cL" firstAttribute="top" secondItem="OuU-V9-Es0" secondAttribute="bottom" constant="10" id="C3u-o1-BI1"/>
+                            <constraint firstItem="uLq-aK-5p9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="EHs-yi-N75"/>
+                            <constraint firstItem="OuU-V9-Es0" firstAttribute="top" secondItem="y18-fT-LBM" secondAttribute="bottom" constant="20" id="J0O-7W-7j9"/>
+                            <constraint firstItem="OSY-jc-sd4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="LRj-RK-FxB"/>
+                            <constraint firstItem="OuU-V9-Es0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="SYr-uu-23u"/>
+                            <constraint firstAttribute="trailing" secondItem="OuU-V9-Es0" secondAttribute="trailing" constant="20" id="TiN-mW-a2u"/>
+                            <constraint firstItem="y18-fT-LBM" firstAttribute="top" secondItem="uLq-aK-5p9" secondAttribute="bottom" constant="20" id="Y5v-fR-hAV"/>
+                            <constraint firstAttribute="trailing" secondItem="uLq-aK-5p9" secondAttribute="trailing" constant="20" id="ZYR-J2-4F2"/>
+                            <constraint firstAttribute="trailing" secondItem="y18-fT-LBM" secondAttribute="trailing" constant="20" id="aIg-PH-hte"/>
+                            <constraint firstAttribute="trailing" secondItem="OSY-jc-sd4" secondAttribute="trailing" constant="20" id="bde-3g-k8W"/>
+                            <constraint firstItem="lkQ-pb-6cL" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="eTp-VL-7WS"/>
+                            <constraint firstItem="y18-fT-LBM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="rNj-sE-Baf"/>
+                            <constraint firstItem="uLq-aK-5p9" firstAttribute="top" secondItem="OSY-jc-sd4" secondAttribute="bottom" constant="20" id="rlV-cm-hkk"/>
+                            <constraint firstItem="OSY-jc-sd4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="tQA-sC-b3C"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addControllerButton" destination="HVm-fl-p69" id="is2-6E-7ua"/>
+                        <outlet property="holderView" destination="8ta-zc-Uv6" id="ayH-JH-rM7"/>
+                        <outlet property="insertControllerButton" destination="d6D-TZ-164" id="fiA-S9-jfg"/>
+                        <outlet property="removeControllerButton" destination="bWr-OK-Mf8" id="58b-tT-cnN"/>
+                        <outlet property="resetButton" destination="lkQ-pb-6cL" id="war-CW-Sjz"/>
+                        <outlet property="scrollToIndexButton" destination="oFB-EY-46s" id="pwc-TD-wFH"/>
+                        <outlet property="scrollToNextButton" destination="P4x-1R-RrA" id="jiE-Kq-7Z8"/>
+                        <outlet property="scrollToPreviousButton" destination="6nf-ar-81e" id="nWC-T1-57A"/>
+                        <outlet property="textLabel" destination="OuU-V9-Es0" id="clb-b9-XLh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Rx Page View Controller-->
+        <scene sceneID="sIH-NI-uBU">
+            <objects>
+                <viewController id="a8e-9U-q87" customClass="RxPageViewController" customModule="RxPageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gfp-BY-k6P">
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLc-oW-hr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="670" y="566"/>
         </scene>
     </scenes>
 </document>
