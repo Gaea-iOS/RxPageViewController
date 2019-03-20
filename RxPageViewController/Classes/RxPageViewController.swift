@@ -16,21 +16,29 @@ public class RxPageViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
-    private var controllers: [UIViewController] = [] {
-        didSet {
-            _totalPages.accept(controllers.count)
-        }
-    }
+    private let _controllers = BehaviorRelay<[UIViewController]>(value: [])
 
     private let _currentIndex = BehaviorRelay<Int>(value: 0)
+
+    private let _currentController = BehaviorRelay<UIViewController?>(value: nil)
+
+    private let _totalPages = BehaviorRelay<Int>(value: 0)
 
     public var currentIndex: Observable<Int> {
         return _currentIndex.distinctUntilChanged()
     }
 
+    public var currentController: Observable<UIViewController?> {
+        return _currentController.distinctUntilChanged()
+    }
+
+    public var totalPages: Observable<Int> {
+        return _totalPages.distinctUntilChanged()
+    }
+
     public func scrollToIndex(index: Int, animated: Bool = true) {
 
-        guard index >= 0 && index < controllers.count else {
+        guard index >= 0 && index < _controllers.value.count else {
             return
         }
 
@@ -46,7 +54,7 @@ public class RxPageViewController: UIViewController {
             }
         }()
 
-        let controller = controllers[index]
+        let controller = _controllers.value[index]
         pageViewController.setViewControllers([controller], direction: direction, animated: animated)
 
         _currentIndex.accept(index)
@@ -62,28 +70,25 @@ public class RxPageViewController: UIViewController {
         scrollToIndex(index: index, animated: animated)
     }
 
-    private let _totalPages = BehaviorRelay<Int>(value: 0)
-
-    public var totalPages: Observable<Int> {
-        return _totalPages.distinctUntilChanged()
-    }
-
     public func reset() {
-        controllers = []
+        _controllers.accept([])
         _currentIndex.accept(0)
         reloadData(animated: false)
     }
 
     public func addController(_ controller: UIViewController) {
-        controllers.append(controller)
+        let controllers = _controllers.value + [controller]
+        _controllers.accept(controllers)
         reloadData(animated: false)
     }
 
     public func insertController(_ controller: UIViewController, at index: Int) {
-        guard index >= 0 && index <= controllers.count else {
+        guard index >= 0 && index <= _controllers.value.count else {
             return
         }
+        var controllers = _controllers.value
         controllers.insert(controller, at: index)
+        _controllers.accept(controllers)
         if index <= _currentIndex.value {
             _currentIndex.accept(_currentIndex.value + 1)
         }
@@ -91,7 +96,7 @@ public class RxPageViewController: UIViewController {
     }
 
     public func removeController(at index: Int, animated: Bool = true) {
-        guard index >= 0 && index < controllers.count else {
+        guard index >= 0 && index < _controllers.value.count else {
             return
         }
 
@@ -100,18 +105,20 @@ public class RxPageViewController: UIViewController {
         if index < _currentIndex.value {
             _currentIndex.accept(_currentIndex.value - 1)
         } else if index == _currentIndex.value {
-            if index == controllers.count - 1 {
+            if index == _controllers.value.count - 1 {
                 direction = .reverse
                 _currentIndex.accept(_currentIndex.value - 1)
             }
             animated = true
         }
+        var controllers = _controllers.value
         controllers.remove(at: index)
+        _controllers.accept(controllers)
         reloadData(direction: direction, animated: animated)
     }
 
     public func removeController(_ controller: UIViewController, animated: Bool = true) {
-        guard let index = controllers.index(of: controller) else {
+        guard let index = _controllers.value.index(of: controller) else {
             return
         }
         removeController(at: index, animated: animated)
@@ -143,6 +150,22 @@ public class RxPageViewController: UIViewController {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
+
+        _controllers
+            .map { $0.count }
+            .bind(to: _totalPages)
+            .disposed(by: disposeBag)
+
+        Observable.combineLatest(
+            _controllers,
+            _currentIndex
+            ).map { (controllers, index) -> UIViewController? in
+                guard index >= 0 && index < controllers.count else {
+                    return nil
+                }
+                return controllers[index]
+            }.bind(to: _currentController)
+            .disposed(by: disposeBag)
     }
 
     public override func viewDidLayoutSubviews() {
@@ -151,8 +174,8 @@ public class RxPageViewController: UIViewController {
     }
 
     private func reloadData(direction: UIPageViewController.NavigationDirection = .forward, animated: Bool = true) {
-        guard _currentIndex.value >= 0 && _currentIndex.value < controllers.count else { return }
-        let controller = controllers[_currentIndex.value]
+        guard _currentIndex.value >= 0 && _currentIndex.value < _controllers.value.count else { return }
+        let controller = _controllers.value[_currentIndex.value]
         pageViewController.fixbug_setViewControllers([controller], direction: direction, animated: animated)
     }
 }
@@ -178,20 +201,20 @@ extension RxPageViewController: UIPageViewControllerDataSource {
 
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-        guard let index = controllers.index(of: viewController), index > 0 else {
+        guard let index = _controllers.value.index(of: viewController), index > 0 else {
             return nil
         }
 
-        return controllers[index-1]
+        return _controllers.value[index-1]
     }
 
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 
-        guard let index = controllers.index(of: viewController), index < controllers.count-1 else {
+        guard let index = _controllers.value.index(of: viewController), index < _controllers.value.count-1 else {
             return nil
         }
 
-        return controllers[index+1]
+        return _controllers.value[index+1]
     }
 }
 
@@ -199,14 +222,14 @@ extension RxPageViewController: UIPageViewControllerDelegate {
 
     public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let lastPendingController = pendingViewControllers.first else {return}
-        guard let index = controllers.index(of: lastPendingController) else {return}
+        guard let index = _controllers.value.index(of: lastPendingController) else {return}
         lastPendingIndex = index
     }
 
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard completed else {return}
         guard let previousController = previousViewControllers.first else {return}
-        guard let previousIndex = controllers.index(of: previousController) else {return}
+        guard let previousIndex = _controllers.value.index(of: previousController) else {return}
         previousIndexs.append(previousIndex)
 
         // 这种情况是，当你在一个页面上，快速往左滑动然后又往右滑动时，会产生。此时
