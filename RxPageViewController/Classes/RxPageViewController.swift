@@ -12,7 +12,7 @@ import RxSwiftExt
 
 public class RxPageViewController: UIViewController {
 
-    private var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [.interPageSpacing: 0.0])
+    public private(set) var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [.interPageSpacing: 0.0])
 
     private let disposeBag = DisposeBag()
 
