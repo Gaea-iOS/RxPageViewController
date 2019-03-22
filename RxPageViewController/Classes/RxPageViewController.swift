@@ -10,30 +10,45 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+extension Reactive where Base: RxPageViewController {
+
+    public var currentIndex: Observable<Int> {
+        return base._currentIndex.distinctUntilChanged()
+    }
+
+    public var currentController: Observable<UIViewController?> {
+        return base._currentController.distinctUntilChanged()
+    }
+
+    public var totalPages: Observable<Int> {
+        return base._totalPages.distinctUntilChanged()
+    }
+}
+
 public class RxPageViewController: UIViewController {
 
     public private(set) var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [.interPageSpacing: 0.0])
 
     private let disposeBag = DisposeBag()
 
-    private let _controllers = BehaviorRelay<[UIViewController]>(value: [])
+    fileprivate let _controllers = BehaviorRelay<[UIViewController]>(value: [])
 
-    private let _currentIndex = BehaviorRelay<Int>(value: 0)
+    fileprivate let _currentIndex = BehaviorRelay<Int>(value: 0)
 
-    private let _currentController = BehaviorRelay<UIViewController?>(value: nil)
+    fileprivate let _currentController = BehaviorRelay<UIViewController?>(value: nil)
 
-    private let _totalPages = BehaviorRelay<Int>(value: 0)
+    fileprivate let _totalPages = BehaviorRelay<Int>(value: 0)
 
-    public var currentIndex: Observable<Int> {
-        return _currentIndex.distinctUntilChanged()
+    public var currentIndex: Int {
+        return _currentIndex.value
     }
 
-    public var currentController: Observable<UIViewController?> {
-        return _currentController.distinctUntilChanged()
+    public var currentController: UIViewController? {
+        return _currentController.value
     }
 
-    public var totalPages: Observable<Int> {
-        return _totalPages.distinctUntilChanged()
+    public var totalPages: Int {
+        return _totalPages.value
     }
 
     public func scrollToIndex(index: Int, animated: Bool = true) {

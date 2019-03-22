@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+
+
         scrollToNextButton.rx
             .tap
             .subscribe(onNext: { [unowned self] in
@@ -62,8 +64,8 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
 
         Observable.combineLatest(
-            pageViewController.currentIndex,
-            pageViewController.totalPages
+            pageViewController.rx.currentIndex,
+            pageViewController.rx.totalPages
             )
             .map { String("currentIndex = \($0.0), totalPages = \($0.1)") }
             .bind(to: textLabel.rx.text)

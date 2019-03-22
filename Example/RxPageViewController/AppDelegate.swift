@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxSwiftExt
+
+class A {
+    let o = BehaviorRelay(value: 1)
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private let a = A()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        a.o.accept(4)
         return true
     }
 
