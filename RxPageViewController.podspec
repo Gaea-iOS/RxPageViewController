@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxPageViewController'
-  s.version          = '0.3.2'
+  s.version          = '0.5.0'
   s.summary          = 'A short description of RxPageViewController.'
 
 # This description is used to generate tags and improve search results.
@@ -41,8 +41,6 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'RxSwift', '~> 4.4'
-  s.dependency 'RxCocoa', '~> 4.4'
-  s.dependency 'RxSwiftExt', '~> 3.4'
-  s.dependency 'RxReachability', '~> 0.1.7'
+  s.dependency 'RxSwift', '~> 5.0'
+  s.dependency 'RxCocoa', '~> 5.0'
 end

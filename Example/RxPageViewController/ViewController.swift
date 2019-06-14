@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RxSwiftExt
 import RxPageViewController
 
 class ViewController: UIViewController {
@@ -30,7 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var holderView: UIView!
 
     private lazy var pageViewController: RxPageViewController = {
-        let controller = childViewControllers.first as! RxPageViewController
+        let controller = children.first as! RxPageViewController
         controller.view.backgroundColor = .black
         return controller
         

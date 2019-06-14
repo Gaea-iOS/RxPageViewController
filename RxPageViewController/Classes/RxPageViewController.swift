@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RxSwiftExt
 
 extension Reactive where Base: RxPageViewController {
 
@@ -139,7 +138,7 @@ public class RxPageViewController: UIViewController {
     }
 
     public func removeController(_ controller: UIViewController, animated: Bool = true) {
-        guard let index = _controllers.value.index(of: controller) else {
+        guard let index = _controllers.value.firstIndex(of: controller) else {
             return
         }
         removeController(at: index, animated: animated)
@@ -222,7 +221,7 @@ extension RxPageViewController: UIPageViewControllerDataSource {
 
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-        guard let index = _controllers.value.index(of: viewController), index > 0 else {
+        guard let index = _controllers.value.firstIndex(of: viewController), index > 0 else {
             return nil
         }
 
@@ -231,7 +230,7 @@ extension RxPageViewController: UIPageViewControllerDataSource {
 
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 
-        guard let index = _controllers.value.index(of: viewController), index < _controllers.value.count-1 else {
+        guard let index = _controllers.value.firstIndex(of: viewController), index < _controllers.value.count-1 else {
             return nil
         }
 
@@ -243,14 +242,14 @@ extension RxPageViewController: UIPageViewControllerDelegate {
 
     public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let lastPendingController = pendingViewControllers.first else {return}
-        guard let index = _controllers.value.index(of: lastPendingController) else {return}
+        guard let index = _controllers.value.firstIndex(of: lastPendingController) else {return}
         lastPendingIndex = index
     }
 
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard completed else {return}
         guard let previousController = previousViewControllers.first else {return}
-        guard let previousIndex = _controllers.value.index(of: previousController) else {return}
+        guard let previousIndex = _controllers.value.firstIndex(of: previousController) else {return}
         previousIndexs.append(previousIndex)
 
         // 这种情况是，当你在一个页面上，快速往左滑动然后又往右滑动时，会产生。此时

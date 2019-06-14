@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RxSwiftExt
 
 class A {
     let o = BehaviorRelay(value: 1)
@@ -22,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private let a = A()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         a.o.accept(4)
         return true
