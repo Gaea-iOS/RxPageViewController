@@ -2,7 +2,7 @@ PODS:
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxPageViewController (0.3.2):
+  - RxPageViewController (0.5.0):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
   - RxRelay (5.0.0):
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxPageViewController: 46443345f1dc468651681d4742dcb5b17ddfddf3
+  RxPageViewController: fac22df791afc3029c45ee831b4790211adff336
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 

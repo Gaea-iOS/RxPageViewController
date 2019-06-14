@@ -1,6 +1,6 @@
 {
   "name": "RxPageViewController",
-  "version": "0.3.2",
+  "version": "0.5.0",
   "summary": "A short description of RxPageViewController.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/wangxiaotao/RxPageViewController",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/wangxiaotao/RxPageViewController.git",
-    "tag": "0.3.2"
+    "tag": "0.5.0"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "9.0"
   },
   "swift_versions": "4.2",
   "source_files": "RxPageViewController/Classes/**/*",
